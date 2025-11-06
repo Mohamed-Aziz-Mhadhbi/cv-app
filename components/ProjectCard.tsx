@@ -1,6 +1,14 @@
-import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Linking, ImageSourcePropType } from "react-native";
 
-export default function ProjectCard({ title, description, tech, image, link }) {
+type ProjectCardProps = {
+  title: string;
+  description: string;
+  tech: string[];
+  image: ImageSourcePropType;
+  link: string;
+};
+
+export default function ProjectCard({ title, description, tech, image, link }: ProjectCardProps) {
   return (
     <TouchableOpacity
       onPress={() => Linking.openURL(link)}
@@ -11,7 +19,10 @@ export default function ProjectCard({ title, description, tech, image, link }) {
       <Text className="text-gray-500 mb-2">{description}</Text>
       <View className="flex-row flex-wrap">
         {tech.map((t, i) => (
-          <Text key={i} className="mr-2 text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-md text-gray-700 dark:text-white">
+          <Text
+            key={i}
+            className="mr-2 text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-md text-gray-700 dark:text-white"
+          >
             {t}
           </Text>
         ))}
